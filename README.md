@@ -11,3 +11,14 @@ If you need delete securely all files of a directory use this script, the main a
 (secure-delete "/home/user/file.txt")
 (secure-delete "/home/user/directory/")
 ```
+
+## list-big-files.lisp
+
+List the files of a directory as "ls" of GNU, but ordered the files by sizes.
+
+### Usage
+
+```lisp
+(list-big-files "/home/user/file.txt")
+(list-big-files "/home/user/directory")
+```
