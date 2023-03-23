@@ -21,6 +21,14 @@
 			   (push (list (format nil "~A" file) (size-file file)) *dir*))
 			 :directories t))
 
+(defun good-printing (lst)
+  "Good printing for the list of list, the nested list have the filepath and the size."
+  (if (equal nil lst)
+      nil
+      (progn
+	(format t "~A ~A~%" (first (car lst)) (second (car lst)))
+	(good-printing (cdr lst)))))
+
 (defun list-big-files (filepath)
   "Check if the input is a file or a directory, return the list of files ordered by size."
   (if (directory-p filepath)
@@ -28,8 +36,5 @@
 	(setf *dir* nil)
 	(walker filepath)
 	(let ((sorted-filepaths (sort *dir* #'> :key #'second)))
-	  (mapcar #'(lambda (register)
-		      (format nil "~A" (concatenate 'string (first register) " "
-						     (write-to-string (second register)))))
-		  sorted-filepaths)))
-      (format nil "~A ~A" filepath (size-file filepath))))
+	  (good-printing sorted-filepaths)))
+      (format t "~A ~A" filepath (size-file filepath))))
