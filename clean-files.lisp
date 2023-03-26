@@ -42,3 +42,14 @@ a directory, clean the file, securely."
 	  (walker filepath)
 	  (clean-files *dir*))
 	(clean-file filepath))))
+
+(defun usage ()
+  "Return the usage documentation."
+  (format t "For files: (secure-delete \"/home/user/file.txt\")
+                 Delete the file securely.
+
+For directory: (secure-delete \"/home/user/directory/\")
+                 Delete securely all files recursively.
+
+The main application 
+     shred: https://www.man7.org/linux/man-pages/man1/shred.1.html"))
